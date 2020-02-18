@@ -1,11 +1,24 @@
 <template>
   <div class="container">
-    <p>Ville {{ weather.name }}</p>
-    <p>température {{ temperature }}°</p>
-    <p>{{ weather.weather[0].description }}</p>
-    <p>levé du soleil{{ weather.sys.sunrise | moment("HH:mm") }}</p>
-    <p>couché du soleil{{ weather.sys.sunset | moment("HH:mm") }}</p>
-    <p>{{ weather.dt | moment("dddd Do MMMM") }}</p>
+    <div class="card card-opacity">
+      <div class="card-header">
+        <div class="float-left">
+          <font-awesome-icon icon="globe-americas" />
+          {{ weather.name }}
+        </div>
+        <div class="float-right">
+          <font-awesome-icon icon="thermometer-half" />
+          {{ temperature }}°
+        </div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ weather.weather[0].description }}</h5>
+        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="">
+        <p class="card-text">levé du soleil{{ weather.sys.sunrise | moment("HH:mm") }}</p>
+        <p class="card-text">cocuhé du soleil{{ weather.sys.sunset | moment("HH:mm") }}</p>
+        <p class="card-text">{{ weather.dt | moment("dddd Do MMMM") }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,6 +36,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.card-opacity {
+  background-color: rgba(255, 255, 255, .6);
+}
 </style>
