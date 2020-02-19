@@ -1,5 +1,5 @@
 <template>
-  <div class="weather-icon">
+  <div class="weather-icon text-center">
     <i :class="weatherIcon"></i>
   </div>
 </template>

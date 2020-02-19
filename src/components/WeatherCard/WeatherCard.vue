@@ -4,22 +4,34 @@
       <div class="card card-opacity">
         <div class="card-header">
           <div class="float-left">
-            <font-awesome-icon icon="globe-americas" />
-            {{ city }}
+            <div class="d-flex align-items-center">
+              <font-awesome-icon icon="globe-americas" size="2x" />
+              <span class="ml-2 font-weight-bold">{{ city }}</span>
+            </div>
           </div>
           <div class="float-right">
-            <font-awesome-icon icon="thermometer-half" />
-            {{ temp }}°
+            <div class="d-flex align-items-center">
+              <font-awesome-icon icon="thermometer-half" size="2x" />
+              <span class="ml-2 font-weight-bold">{{ temp }}°</span>
+            </div>
           </div>
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{ weatherDescription }}</h5>
           <WeatherIcon :description="weatherDescription" />
-          <p class="card-text">{{ date | moment("dddd Do MMMM") }}</p>
-          <p class="card-text">mise à jour: {{ date | moment("HH:mm") }}</p>
-          <button class="btn btn-primary" v-on:click="moreInfos">
-            plus d'informations
-          </button>
+          <h1 class="card-title text-center">{{ weatherDescription }}</h1>
+          <div class="row mt-5">
+            <div class="col-md-4 my-auto d-none d-md-block">
+              <p class="card-text">{{ date | moment("dddd Do MMMM") }}</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <button class="btn btn-success" v-on:click="moreInfos">
+                plus d'informations
+              </button>
+            </div>
+            <div class="col-md-4 my-auto d-none d-md-block">
+              <p class="card-text text-right">mise à jour: {{ date | moment("HH:mm") }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
