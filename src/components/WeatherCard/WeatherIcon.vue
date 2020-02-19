@@ -6,6 +6,8 @@
 
 <script>
 export default {
+  name: "Weathericon",
+
   props: {
     description: String
   },
