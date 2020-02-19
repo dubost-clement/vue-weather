@@ -13,7 +13,7 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ weather.weather[0].description }}</h5>
-        <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="">
+        <WeatherIcon :description="weather.weather[0].description" />
         <p class="card-text">levé du soleil{{ weather.sys.sunrise | moment("HH:mm") }}</p>
         <p class="card-text">cocuhé du soleil{{ weather.sys.sunset | moment("HH:mm") }}</p>
         <p class="card-text">{{ weather.dt | moment("dddd Do MMMM") }}</p>
@@ -23,9 +23,16 @@
 </template>
 
 <script>
+import WeatherIcon from "./WeatherIcon";
+import "weather-icons-npm/css/weather-icons.min.css";
+
 export default {
   props: {
     weather: Object
+  },
+
+  components: {
+    WeatherIcon
   },
 
   computed: {
