@@ -7,12 +7,11 @@
         :temperature="weather.main.temp"
         :weatherDescription="weather.weather[0].description"
         :date="weather.dt"
-        v-on:more-infos="moreInfos"
       />
     </div>
     <div class="container">
       <AdditionalWeather
-        v-if="show"
+        v-if="moreInfo"
         :sunrise="weather.sys.sunrise"
         :sunset="weather.sys.sunset"
         :windSpeed="weather.wind.speed"
@@ -27,6 +26,7 @@
 <script>
 import WeatherCard from "./WeatherCard";
 import AdditionalWeather from "../AddionalWeather/AdditionalWeather";
+import { mapState } from "vuex";
 
 export default {
   name: "Weather",
@@ -40,17 +40,9 @@ export default {
     weather: Object
   },
 
-  data() {
-    return {
-      show: false
-    }
-  },
-
-  methods: {
-    moreInfos() {
-      this.show = true;
-    }
-  }
+  computed: mapState([
+    'moreInfo'
+  ])
 }
 </script>
 

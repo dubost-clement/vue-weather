@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-4 text-center">
               <button class="btn btn-success" v-on:click="moreInfos">
-                plus d'informations
+                {{ btnText }} d'informations
               </button>
             </div>
             <div class="col-md-4 my-auto d-none d-md-block">
@@ -41,6 +41,7 @@
 <script>
 import WeatherIcon from "./WeatherIcon";
 import "weather-icons-npm/css/weather-icons.min.css";
+import { mapGetters } from "vuex";
 
 export default {
   name: "WeatherCard",
@@ -59,12 +60,20 @@ export default {
   computed: {
     temp() {
       return Math.round(this.temperature);
-    }
+    },
+
+    btnText() {
+      return this.showInfo == true ? "moins" : "plus";
+    },
+
+    ...mapGetters([
+      'showInfo'
+    ])
   },
 
   methods: {
     moreInfos() {
-      this.$emit("more-infos");
+      this.$store.commit("showMoreInfo", !this.showInfo);
     }
   }
 }

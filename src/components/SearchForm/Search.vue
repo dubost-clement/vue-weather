@@ -27,6 +27,7 @@ export default {
   methods: {
     searchCity() {
       this.$emit("city-name", this.cityName);
+      this.$store.commit("showMoreInfo", false);
     }
   }
 }
