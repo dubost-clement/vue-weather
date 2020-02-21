@@ -10,15 +10,20 @@
       />
     </div>
     <div class="container">
-      <AdditionalWeather
-        v-if="moreInfo"
-        :sunrise="weather.sys.sunrise"
-        :sunset="weather.sys.sunset"
-        :windSpeed="weather.wind.speed"
-        :windDirection="weather.wind.deg"
-        :pressure="weather.main.pressure"
-        :humidity="weather.main.humidity"
-      />
+      <transition 
+        enter-active-class="animated fadeIn"
+        leave-active-class="animated fadeOut"
+      >
+        <AdditionalWeather
+          v-if="moreInfo"
+          :sunrise="weather.sys.sunrise"
+          :sunset="weather.sys.sunset"
+          :windSpeed="weather.wind.speed"
+          :windDirection="weather.wind.deg"
+          :pressure="weather.main.pressure"
+          :humidity="weather.main.humidity"
+        />
+      </transition>
     </div>
   </div>
 </template>

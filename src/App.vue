@@ -9,6 +9,7 @@
 import axios from "axios";
 import Search from "@/components/SearchForm/Search";
 import Weather from "@/components/WeatherCard/Weather";
+import "animate.css/animate.min.css";
 
 export default {
   name: "App",

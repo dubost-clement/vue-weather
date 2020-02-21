@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 my-5">
       <div class="card card-opacity">
-        <div class="card-header">
+        <div class="card-header" id="show-more">
           <h2 class="text-center">Plus d'informations</h2>
         </div>
         <div class="card-body">
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "AdditionalWeather",
 
@@ -42,10 +44,20 @@ export default {
     humidity: Number
   },
 
+  mounted() {
+    if(this.showInfo) {
+      document.querySelector("#show-more").scrollIntoView();
+    }
+  },
+
   computed: {
     speed() {
       return Math.round(this.windSpeed * 3.6);
-    }
+    },
+
+    ...mapGetters([
+      'showInfo'
+    ])
   }
 }
 </script>
