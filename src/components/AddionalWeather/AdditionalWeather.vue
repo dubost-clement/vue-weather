@@ -15,7 +15,10 @@
             <div class="col-sm-12 col-md-4 py-2 py-md-0 custom-border">
               <h3 class="mb-3">Vent</h3>
               <p class="card-text">{{speed}} km/h</p>
-              <p class="card-text">Direction {{windDirection}}</p>
+              <p class="card-text">
+                Direction 
+                <WindDirection :angle="windDirection" />
+              </p>
             </div>
             <div class="col-sm-12 col-md-4 py-2 py-md-0">
               <h3 class="mb-3">Divers</h3>
@@ -31,9 +34,14 @@
 
 <script>
 import { mapGetters } from "vuex";
+import WindDirection from "./WindDirection";
 
 export default {
   name: "AdditionalWeather",
+
+  components: {
+    WindDirection
+  },
 
   props: {
     sunrise: Number,
