@@ -7,6 +7,8 @@
         :temperature="weather.main.temp"
         :weatherDescription="weather.weather[0].description"
         :date="weather.dt"
+        :sunrise="weather.sys.sunrise"
+        :sunset="weather.sys.sunset"
       />
     </div>
     <div class="container">

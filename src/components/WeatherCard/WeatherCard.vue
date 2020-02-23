@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="card-body">
-          <WeatherIcon :description="weatherDescription" />
+          <WeatherIcon :description="weatherDescription" :sunrise="sunrise" :sunset="sunset"/>
           <h1 class="card-title text-center">{{ weatherDescription }}</h1>
           <div class="row mt-5">
             <div class="col-md-4 my-auto d-none d-md-block">
@@ -54,7 +54,9 @@ export default {
     city: String,
     temperature: Number,
     weatherDescription: String,
-    date: Number
+    date: Number,
+    sunrise: Number,
+    sunset: Number
   },
 
   computed: {

@@ -9,6 +9,7 @@
 import axios from "axios";
 import Search from "@/components/SearchForm/Search";
 import Weather from "@/components/WeatherCard/Weather";
+import { mapGetters } from "vuex";
 import "animate.css/animate.min.css";
 
 export default {
@@ -43,17 +44,24 @@ export default {
       this.sunrise = new Date(date + " " + sunrise).getTime()/1000;
       this.sunset = new Date(date + " " + sunset).getTime()/1000;
       this.date = Math.round(new Date().getTime()/1000);
+      this.$store.commit("setDate", Math.round(new Date().getTime()/1000));
       
       this.backgroundCondition();
     },
 
     backgroundCondition() {
-      if(this.date > this.sunrise && this.date < this.sunset) {
+      if(this.getDate > this.sunrise && this.getDate < this.sunset) {
         this.background = 'url(' + require('@/assets/images/day.png') + ')';
       }else {
         this.background = 'url(' + require('@/assets/images/night.png') + ')';
       }
     }
+  },
+
+  computed: {
+    ...mapGetters([
+      "getDate"
+    ])
   },
 
   created() {

@@ -6,16 +6,22 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     moreInfo: false,
+    ActualDate: null,
   },
 
   mutations: {
     showMoreInfo (state, bool) {
       state.moreInfo = bool;
+    },
+
+    setDate(state, date) {
+      state.ActualDate = date;
     }
   },
 
   getters: {
-    showInfo: state => state.moreInfo
+    showInfo: state => state.moreInfo,
+    getDate: state => state.ActualDate
   }
 });
 

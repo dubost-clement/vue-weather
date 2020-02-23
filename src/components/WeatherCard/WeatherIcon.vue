@@ -5,11 +5,15 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Weathericon",
 
   props: {
-    description: String
+    description: String,
+    sunrise: Number,
+    sunset: Number
   },
 
   data() {
@@ -22,33 +26,44 @@ export default {
     weatherIcon() {
       this.iconCondition();
       return this.icon;
-    }
+    },
+    ...mapGetters([
+      "getDate"
+    ])
   },
 
   methods: {
     iconCondition() {
       if (this.description === "ciel dégagé") {
-        this.icon = "wi wi-day-sunny";
+        if(this.getDate > this.sunrise && this.getDate < this.sunset) {
+          this.icon = "wi wi-day-sunny";
+        }else {
+          this.icon = "wi wi-night-clear";
+        }
       }
     
-      if (this.description === "brume") {
-        this.icon = "wi wi-fog";
-      }
-
-      if (this.description === "brouillard") {
-        this.icon = "wi wi-fog";
+      if (this.description === "brouillard" || this.description === "brume") {
+        if(this.getDate > this.sunrise && this.getDate < this.sunset) {
+          this.icon = "wi wi-fog";
+        }else {
+          this.icon = "wi wi-night-fog";
+        }
       }
 
       if (this.description === "nuageux") {
-        this.icon = "wi wi-cloudy";
+        if(this.getDate > this.sunrise && this.getDate < this.sunset) {
+          this.icon = "wi wi-cloudy";
+        }else {
+          this.icon = "wi wi-night-alt-cloudy";
+        }
       }
 
-      if (this.description === "peu nuageux") {
-        this.icon = "wi wi-day-cloudy";
-      }
-
-      if (this.description === "partiellement nuageux") {
-        this.icon = "wi wi-day-cloudy";
+      if (this.description === "peu nuageux" || this.description === "partiellement nuageux") {
+        if(this.getDate > this.sunrise && this.getDate < this.sunset) {
+          this.icon = "wi wi-day-cloudy";
+        }else {
+          this.icon = "wi wi-night-fog";
+        }
       }
 
       if (this.description === "couvert") {
